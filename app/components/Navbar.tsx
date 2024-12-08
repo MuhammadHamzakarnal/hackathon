@@ -5,6 +5,7 @@ import { IoBagOutline } from "react-icons/io5";
 import { LuHeart } from "react-icons/lu";
 
 import { Poppins } from "next/font/google";
+import Link from "next/link";
 const poppins = Poppins({
   weight: ["400", "700"],
   subsets: ["latin"],
@@ -42,7 +43,7 @@ const Navbar = () => {
 
         <ul className="hidden sm:flex flex-1 justify-center items-center space-x-6 text-[15px] font-medium">
           <li>New & Featured</li>
-          <li>Men</li>
+          <Link href="app/ProductDetail.tsc/ProductDetail.tsx"><li>Men</li></Link>
           <li>Women</li>
           <li>Kids</li>
           <li>Sale</li>

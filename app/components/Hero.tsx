@@ -6,6 +6,7 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 
+
 const Hero = () => {
   return (
     <div className={`${poppins.className} w-full overflow-x-hidden`}>

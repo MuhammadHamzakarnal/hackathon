@@ -2,7 +2,7 @@ import React from "react";
 import { Poppins } from "next/font/google";
 import { FaTwitter, FaFacebookF, FaInstagram } from "react-icons/fa";
 import { TiSocialYoutubeCircular } from "react-icons/ti";
-import { IoLocationOutline } from "react-icons/io5";
+import { IoLocationOutline } from 'react-icons/io5';
 
 const poppins = Poppins({
   weight: ["400", "700"],
@@ -126,7 +126,7 @@ const Footer = () => {
 
         <div className="mt-8 flex flex-col md:flex-row justify-between items-center text-[#7E7E7E]">
           <div className="flex items-center gap-2">
-            <IoLocationOutline />
+            <IoLocationOutline/>
             <p className={`${poppins.className} font-normal text-[12px]`}>
               India
             </p>
