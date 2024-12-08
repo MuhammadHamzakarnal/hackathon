@@ -8,6 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens:{
+        "sm":"428px",
+        "md":"768px",
+        "lg":"1024px",
+        "max-sm":{"max":"767px"},
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
