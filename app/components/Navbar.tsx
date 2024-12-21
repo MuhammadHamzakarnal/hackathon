@@ -1,39 +1,65 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { LuSearch } from "react-icons/lu";
 import { IoBagOutline } from "react-icons/io5";
 import { LuHeart } from "react-icons/lu";
 
 import { Poppins } from "next/font/google";
 import Link from "next/link";
+
 const poppins = Poppins({
   weight: ["400", "700"],
   subsets: ["latin"],
 });
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <div className={`${poppins.className} w-full overflow-x-hidden`}>
-      <div className="w-full h-[36px] bg-[#F5F5F5] flex justify-between items-center px-4 sm:px-12">
-        <Image
-          src="/Images/NavbarImg/Frame.svg"
-          alt="men logo"
-          width={24}
-          height={24}
-          className="mt-[8px]"
-        />
-        <div className="flex items-center space-x-4 text-[11px]">
-          <h2>Find a Store</h2>
-          <div className="w-[2px] h-[14px] bg-black"></div>
-          <h2>Help</h2>
-          <div className="w-[2px] h-[14px] bg-black"></div>
-          <h2>Join Us</h2>
-          <div className="w-[2px] h-[14px] bg-black"></div>
-          <h2>Sign In</h2>
+    <div className={`${poppins.className} w-full`}>
+      <div className="w-full h-[36px] bg-[#F5F5F5] flex items-center justify-between px-4 sm:px-12">
+        {/* Logo Section */}
+        <div className="flex-shrink-0">
+          <Image
+            src="/Images/NavbarImg/Frame.svg"
+            alt="menu logo"
+            width={24}
+            height={24}
+            className="mt-[8px]"
+          />
         </div>
+
+        {/* Links Section */}
+        <ul className="flex items-center justify-center space-x-4 text-[11px] mt-2 md:mt-0">
+          <li>Find a Store</li>
+          <div className="w-[2px] h-[14px] bg-black"></div>
+          <Link href="/Contact">
+            <li>Help</li>
+          </Link>
+          <div className="w-[2px] h-[14px] bg-black"></div>
+          <Link href="/Joinus">
+            <li>Join Us</li>{" "}
+          </Link>
+          <div className="w-[2px] h-[14px] bg-black"></div>
+          <Link href="/Login">
+            {" "}
+            <li>LogIn</li>{" "}
+          </Link>
+        </ul>
       </div>
 
-      <div className="w-full h-[60px] flex items-center px-4 sm:px-12">
+      {/* Main Navbar */}
+      <div className="w-full h-[60px] flex items-center  sm:px-12">
+        {/* Logo */}
         <Image
           src="/Images/NavbarImg/logo.svg"
           alt="nike"
@@ -41,16 +67,30 @@ const Navbar = () => {
           height={78.47}
         />
 
+        {/* Desktop Menu */}
         <ul className="hidden sm:flex flex-1 justify-center items-center space-x-6 text-[15px] font-medium">
-          <li>New & Featured</li>
-          <Link href="app/ProductDetail.tsc/ProductDetail.tsx"><li>Men</li></Link>
-          <li>Women</li>
-          <li>Kids</li>
-          <li>Sale</li>
-          <li>SNKRS</li>
+          <Link href="#">
+            <li>New & Featured</li>{" "}
+          </Link>
+          <li>
+            <Link href="/Cart">Men</Link>
+          </li>
+          <Link href="/ProductDetail">
+            <li>Women</li>{" "}
+          </Link>
+          <Link href="#">
+            <li>Kids</li>
+          </Link>
+          <Link href="#">
+            <li>Sale</li>
+          </Link>
+          <Link href="#">
+            <li>SNKRS</li>
+          </Link>
         </ul>
 
-        <div className="flex items-center space-x-4 ml-auto">
+        {/* Icons */}
+        <div className=" max-md:hidden  flex items-center space-x-4 ml-auto">
           <div className="hidden sm:flex items-center bg-[#F5F5F5] rounded-full px-4 py-2">
             <LuSearch className="text-[20px]" />
             <input
@@ -62,7 +102,78 @@ const Navbar = () => {
           <LuHeart className="text-[24px]" />
           <IoBagOutline className="text-[24px]" />
         </div>
+
+        {/* Hamburger Menu */}
+        <div className="ml-auto items-center mt-2 justify-end">
+          <button
+            onClick={toggleMenu}
+            className="text-black focus:outline-none ml-4"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d={
+                  isOpen
+                    ? "M6 18L18 6M6 6l12 12" // Close icon
+                    : "M4 6h16M4 12h16M4 18h16" // Hamburger icon
+                }
+              />
+            </svg>
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="bg-white shadow-lg">
+          <ul className="flex flex-col items-center space-y-4 py-4">
+            <li>
+              <Link
+                href="/"
+                onClick={closeMenu}
+                className="text-gray-700 hover:text-black"
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/ProductDetail"
+                onClick={closeMenu}
+                className="text-gray-700 hover:text-black"
+              >
+                About
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/Product"
+                onClick={closeMenu}
+                className="text-gray-700 hover:text-black"
+              >
+                Products
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/Contact"
+                onClick={closeMenu}
+                className="text-gray-700 hover:text-black"
+              >
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

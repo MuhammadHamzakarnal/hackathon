@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Poppins } from "next/font/google";
+import Link from "next/link";
 
 const poppins = Poppins({
   weight: ["400", "700"],
@@ -30,9 +31,9 @@ const Featured = () => {
           Cause everyone should know the feeling of running in that perfect
           pair.
         </p>
-        <button className="mt-6 bg-black text-white text-[15px] font-medium px-6 py-2 rounded-full">
+        <Link href="/Product"> <button className="mt-6 bg-black text-white text-[15px] font-medium px-6 py-2 rounded-full">
           Find Your Shoe
-        </button>
+        </button> </Link>
       </div>
     </div>
   );

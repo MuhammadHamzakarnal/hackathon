@@ -40,7 +40,7 @@ const Essentials = () => {
         />
       </div>
 
-      <div className="mt-12 flex flex-col  md:flex-row justify-center max-sm:justify-center max-sm:items-center md:w-[880px] md:ml-[280px]  gap-8">
+      <div className="mt-12 flex flex-col  md:flex-row justify-center max-sm:justify-start max-sm:items-start  md:gap-4 lg:ml-6 ">
         <div className="flex-1">
           <h4 className={`${poppins.className} font-medium text-base`}>
             Icons
