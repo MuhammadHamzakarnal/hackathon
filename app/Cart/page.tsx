@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
 import { CiHeart } from "react-icons/ci";
@@ -10,11 +11,70 @@ const poppins = Poppins({
 });
 
 const page = () => {
+  const [cart, setCart] = useState<
+    {
+      id: number;
+      name: string;
+      description: string;
+      color: string;
+      size: string;
+      quantity: number;
+      price: number;
+      image: string;
+    }[]
+  >([
+    {
+      id: 1,
+      name: "Nike Dri FIT ADV TechKnit Ultra",
+      description: "Mens Short-Sleeve Running Top",
+      color: "Ashen Slate/Cobalt Bliss",
+      size: "L",
+      quantity: 1,
+      price: 3895,
+      image: "/Featured/Image (5).svg",
+    },
+    {
+      id: 2,
+      name: "Nike Air Max 97 SE",
+      description: "Mens Shoes",
+      color: "Flat Pewter/Light Bone/Black/White",
+      size: "8",
+      quantity: 1,
+      price: 16995,
+      image: "/Featured/Image (7).svg",
+    },
+  ]);
+
+  const [favorites, setFavorites] = useState<number[]>([]);
+
+  const handleQuantityChange = (id: number, delta: number) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === id
+          ? { ...item, quantity: Math.max(1, item.quantity + delta) }
+          : item
+      )
+    );
+  };
+
+  const handleDelete = (id: number) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+  };
+
+  const toggleFavorite = (id: number) => {
+    setFavorites((prevFavorites) =>
+      prevFavorites.includes(id)
+        ? prevFavorites.filter((favId) => favId !== id)
+        : [...prevFavorites, id]
+    );
+  };
+
+  const calculateSubtotal = () =>
+    cart.reduce((total, item) => total + item.price * item.quantity, 0);
+
   return (
-    <div>
-      <div
-        className={`${poppins.className} w-[1100px] mt-[40px] ml-[156px] flex flex-col gap-8`}
-      >
+    <div className={`${poppins.className} px-4 md:px-8 lg:px-16`}>
+      <div className="max-w-[1100px] mx-auto mt-[40px] flex flex-col gap-8">
         {/* Bag and Summary Wrapper */}
         <div className="flex flex-col md:flex-row gap-8">
           {/* Bag Section */}
@@ -30,68 +90,65 @@ const page = () => {
             </div>
             <h1 className="text-[22px] font-medium mt-4">Bag</h1>
             <div className="w-full mt-4 space-y-6">
-              {/* Product Item */}
-              <div className="flex items-start gap-6">
-                <Image
-                  src="/Featured/Image (5).svg"
-                  alt="image"
-                  width={150}
-                  height={150}
-                />
-                <div className="flex-1 border-b border-[#E5E5E5] pb-5">
-                  <h5 className="font-medium text-[15px] text-[#111111]">
-                    Nike Dri FIT ADV TechKnit Ultra
-                  </h5>
-                  <p className="text-[15px] font-normal text-[#757575]">
-                    Mens Short-Sleeve Running Top
-                  </p>
-                  <p className="text-[15px] font-normal text-[#757575]">
-                    Ashen Slate/Cobalt Bliss
-                  </p>
-                  <p className="text-[15px] font-normal text-[#757575]">
-                    Size L{" "}
-                    <span className="ml-10 text-[15px] font-normal text-[#757575]">
-                      Quantity 1
-                    </span>
-                  </p>
-                  <div className="flex gap-3 mt-6">
-                    <CiHeart className="w-6 h-6" />
-                    <RiDeleteBin6Line className="w-6 h-6" />
+              {cart.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex flex-col sm:flex-row items-start gap-6"
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    width={150}
+                    height={150}
+                    className="flex-shrink-0"
+                  />
+                  <div className="flex-1 border-b border-[#E5E5E5] pb-5">
+                    <h5 className="font-medium text-[15px] text-[#111111]">
+                      {item.name}
+                    </h5>
+                    <p className="text-[15px] font-normal text-[#757575]">
+                      {item.description}
+                    </p>
+                    <p className="text-[15px] font-normal text-[#757575]">
+                      {item.color}
+                    </p>
+                    <p className="text-[15px] font-normal text-[#757575]">
+                      Size {item.size}{" "}
+                      <span className="ml-10 text-[15px] font-normal text-[#757575]">
+                        Quantity:{" "}
+                        <button
+                          onClick={() => handleQuantityChange(item.id, -1)}
+                          className="px-2"
+                        >
+                          -
+                        </button>
+                        {item.quantity}
+                        <button
+                          onClick={() => handleQuantityChange(item.id, 1)}
+                          className="px-2"
+                        >
+                          +
+                        </button>
+                      </span>
+                    </p>
+                    <div className="flex gap-3 mt-6">
+                      <CiHeart
+                        className={`w-6 h-6 cursor-pointer ${
+                          favorites.includes(item.id) ? "text-red-500" : ""
+                        }`}
+                        onClick={() => toggleFavorite(item.id)}
+                      />
+                      <RiDeleteBin6Line
+                        className="w-6 h-6 cursor-pointer"
+                        onClick={() => handleDelete(item.id)}
+                      />
+                    </div>
                   </div>
+                  <p className="font-normal text-[15px]">
+                    MRP: ₹ {item.price * item.quantity}
+                  </p>
                 </div>
-                <p className="font-normal text-[15px]">MRP: ₹ 3 895.00</p>
-              </div>
-              {/* Repeat Product Item for another product */}
-              <div className="flex items-start gap-6">
-                <Image
-                  src="/Featured/Image (7).svg"
-                  alt="image"
-                  width={150}
-                  height={150}
-                />
-                <div className="flex-1 border-b border-[#E5E5E5] pb-5">
-                  <h5 className="font-medium text-[15px] text-[#111111]">
-                    Nike Air Max 97 SE
-                  </h5>
-                  <p className="text-[15px] font-normal text-[#757575]">
-                    Mens Shoes
-                  </p>
-                  <p className="text-[15px] font-normal text-[#757575]">
-                    Flat Pewter/Light Bone/Black/White
-                  </p>
-                  <p className="text-[15px] font-normal text-[#757575]">
-                    Size 8{" "}
-                    <span className="ml-10 text-[15px] font-normal text-[#757575]">
-                      Quantity 1
-                    </span>
-                  </p>
-                  <div className="flex gap-3 mt-6">
-                    <CiHeart className="w-6 h-6" />
-                    <RiDeleteBin6Line className="w-6 h-6" />
-                  </div>
-                </div>
-                <p className="font-normal text-[15px]">MRP: ₹ 16 995.00</p>
-              </div>
+              ))}
             </div>
           </div>
 
@@ -101,7 +158,9 @@ const page = () => {
               <h1 className="text-[21px] font-medium">Summary</h1>
               <div className="flex justify-between mt-4">
                 <p className="text-[15px] font-normal">Subtotal</p>
-                <p className="text-[15px] font-normal">₹ 20 890.00</p>
+                <p className="text-[15px] font-normal">
+                  ₹ {calculateSubtotal()}
+                </p>
               </div>
               <div className="flex justify-between">
                 <p className="text-[15px] font-normal">
@@ -111,7 +170,9 @@ const page = () => {
               </div>
               <div className="flex justify-between border-y border-[#E5E5E5] py-4">
                 <p className="text-[15px] font-normal">Total</p>
-                <p className="text-[15px] font-normal">₹ 20 890.00</p>
+                <p className="text-[15px] font-normal">
+                  ₹ {calculateSubtotal()}
+                </p>
               </div>
               <button className="w-full h-[60px] rounded-[30px] bg-black text-white text-[15px] font-medium mt-4">
                 Member Checkout

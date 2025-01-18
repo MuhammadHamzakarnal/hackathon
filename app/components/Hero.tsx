@@ -26,7 +26,7 @@ const Hero = () => {
           src="/Hero/Image.svg"
           alt="Hero Image"
           
-          width={1344}
+          width={1144}
           height={700}
           className="object-cover"
         />

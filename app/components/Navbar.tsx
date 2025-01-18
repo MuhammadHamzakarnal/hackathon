@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { LuSearch } from "react-icons/lu";
-import { IoBagOutline } from "react-icons/io5";
+import { IoCart } from "react-icons/io5";
 import { LuHeart } from "react-icons/lu";
 
 import { Poppins } from "next/font/google";
@@ -39,7 +39,7 @@ const Navbar = () => {
         </div>
 
         {/* Links Section */}
-        <ul className="flex items-center justify-center space-x-4 text-[11px] mt-2 md:mt-0">
+        <ul className="flex items-center justify-center space-x-4 md:text-[11px] font-bold text-[14px] mt-2 md:mt-0">
           <li>Find a Store</li>
           <div className="w-[2px] h-[14px] bg-black"></div>
           <Link href="/Contact">
@@ -99,8 +99,8 @@ const Navbar = () => {
               className="ml-2 text-[15px] bg-transparent placeholder-[#CCCCCC] outline-none"
             />
           </div>
-          <LuHeart className="text-[24px]" />
-          <IoBagOutline className="text-[24px]" />
+          <LuHeart className="text-[30px]" />
+          <IoCart className="text-[30px]" />
         </div>
 
         {/* Hamburger Menu */}
