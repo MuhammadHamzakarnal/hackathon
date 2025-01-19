@@ -25,7 +25,7 @@ const Hero = () => {
           src="/Hero/Image.svg"
           alt="Hero Image"
           
-          width={1344}
+          width={1144}
           height={700}
           className="object-cover"
         />
@@ -37,7 +37,8 @@ const Hero = () => {
           <p className="text-[15px] mt-4">
             Extreme comfort. Hyper durable. Max volume. Introducing the Air Max
             Pulse —designed to push you past your limits and help you go to the
-            max.
+            max
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure deleniti nostrum quidem, sed ratione debitis soluta reprehenderit accusantium numquam qui et incidunt sit ea omnis iusto ipsam eius, autem delectus.
           </p>
           <div className="flex gap-4 justify-center mt-6">
             <button className="px-6 py-2 bg-black text-white rounded-full">
