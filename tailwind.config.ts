@@ -13,6 +13,7 @@ const config: Config = {
         "md":"768px",
         "lg":"1024px",
         "max-sm":{"max":"767px"},
+        "max-md":{"max":"1020px"},
       },
       colors: {
         background: "var(--background)",

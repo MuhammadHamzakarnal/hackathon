@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Poppins } from "next/font/google";
+import Link from "next/link";
 
 const poppins = Poppins({
   weight: ["400", "700"],
@@ -33,9 +34,9 @@ const Miss = () => {
             Your built-to-last, all-week wears—but with style only Jordan Brand
             can deliver.
           </p>
-          <button className="mt-6 rounded-full bg-black text-white text-[15px] py-2 px-6 font-medium">
+          <Link href="/Cart"> <button className="mt-6 rounded-full bg-black text-white text-[15px] py-2 px-6 font-medium">
             Shop
-          </button>
+          </button> </Link>
         </div>
       </div>
     </div>
