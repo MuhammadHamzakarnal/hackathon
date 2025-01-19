@@ -2,7 +2,7 @@ import React from "react";
 import { Poppins } from "next/font/google";
 import { HiAdjustmentsHorizontal } from "react-icons/hi2";
 import { SlArrowDown } from "react-icons/sl";
-import { IoIosArrowUp } from "react-icons/io";
+
 import Image from "next/image";
 
 const poppins = Poppins({
@@ -78,8 +78,8 @@ const page = () => {
               />
               <div className="mt-3 text-[15px]">
                 <h6 className="text-[#9E3500] font-medium">Just In</h6>
-                <p className="font-medium mt-1">Nike Air Force 1 Mid '07</p>
-                <p className="text-[#757575] font-normal">Men's Shoes</p>
+                <p className="font-medium mt-1">Nike Air Force 1 Mid 07</p>
+                <p className="text-[#757575] font-normal">Mens Shoes</p>
                 <p className="text-[#757575] font-normal">1 Color</p>
                 <h6 className="font-medium mt-2">MRP: ₹ 10 795.00</h6>
               </div>

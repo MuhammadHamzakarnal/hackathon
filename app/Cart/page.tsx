@@ -1,4 +1,5 @@
-"use client"
+"use client"; // Add this at the top
+
 import React, { useState } from "react";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
@@ -10,7 +11,7 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 
-const page = () => {
+const Page = () => { // Renamed to 'Page'
   const [cart, setCart] = useState<
     {
       id: number;
@@ -185,4 +186,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page; // Export default 'Page'
