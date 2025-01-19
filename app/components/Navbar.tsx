@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { LuSearch } from "react-icons/lu";
 import { IoCart } from "react-icons/io5";
 import { LuHeart } from "react-icons/lu";
-
 import { Poppins } from "next/font/google";
 import Link from "next/link";
 
@@ -133,7 +132,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="bg-white shadow-lg">
+        <div className="bg-white shadow-lg z-50 transition-all duration-300 max-h-screen">
           <ul className="flex flex-col items-center space-y-4 py-4">
             <li>
               <Link
